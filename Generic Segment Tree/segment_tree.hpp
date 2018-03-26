@@ -11,7 +11,8 @@
 
 namespace data_structure
 {
-	// Node (small unit of segment tree) every node contain a info about range(start, end) ,have a value and have left, right childs (If not lefa) 
+	// Node (small unit of segment tree) every node contain a info about range(start, end) 
+	// have a value and have left, right childs
 	template<typename T>
 	class node
 	{
@@ -125,7 +126,7 @@ namespace data_structure
 			m_root = create_tree(0, m_real_size - 1);
 		}
 	
-		// calculate height & real size of segment tree 
+		// calculate real size of segment tree 
 		void calculate_tree_size()
 		{
 			size_type size = m_data.size();
@@ -323,13 +324,13 @@ namespace data_structure
 			downgrade();
 		}
 
-		// This query function get interval(from, to) and make a query in it base on your function (log(n))
+		// This query function take interval(from, to) and make a query in it base on your function (log(n))
 		value_type query(size_type from, size_type to) const
 		{
 			return do_query(m_root, from, to, 0, m_real_size - 1);
 		}
 
-		// This update function take index and new value, update old value with the new one (log(n))
+		// This update function take index and new value, update old value with the new value (log(n))
 		void update(size_type index, const value_type &new_value, bool have_value = true)
 		{
 			m_data[index] = new_value;

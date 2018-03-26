@@ -45,14 +45,7 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 			if (l > r) std::swap(l, r);
 			int bf_ans = brute_force(l, r, bf, lamda);
 			int st_ans = st.query(l, r);
-			//std::cout << "qurey: " << l << " " << r << std::endl;
 			BOOST_CHECK(bf_ans == st_ans);
-			if (bf_ans != st_ans)
-			{
-				st.print();
-
-				std::cout << bf_ans << " " << st_ans << std::endl;
-			}
 
 		}
 		else if (type == 1)
@@ -62,7 +55,6 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 			int new_val = (rand() % (1000000)) - 500000;
 			bf[pos] = new_val;
 			st.update(pos, new_val);
-			//std::cout << "update: " << pos << " " << new_val << std::endl;
 			BOOST_CHECK(bf[pos] == st.get_element(pos)); 
 
 		}
@@ -71,14 +63,12 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 			int new_val = (rand() % (1000000)) - 500000;
 			bf.push_back(new_val);
 			st.push_back(new_val);
-			//std::cout << "push: " << new_val << std::endl;
 			BOOST_CHECK(bf.back() == st.get_element(st.size() - 1));
 		}
 		else if (type == 3)
 		{
 			bf.pop_back();
 			st.pop_back();
-			//std::cout << "pop" << std::endl;
 		}
 		BOOST_CHECK(bf.size() == st.size());
 
@@ -91,6 +81,8 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 	}
 	system("PAUSE");
 }
+
+
 
 
 

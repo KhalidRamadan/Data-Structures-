@@ -132,6 +132,8 @@ namespace data_structure
 			size_type size = m_data.size();
 			m_real_size = 1;
 			while (m_real_size < size) m_real_size <<= 1;
+			
+
 		}
 
 		// create segment tree recursively
@@ -165,6 +167,7 @@ namespace data_structure
 			return root;
 
 		}
+
 
 		// create a new node 
 		node_ptr create_node(const value_type &value = value_type(), bool have_val = true)
@@ -261,11 +264,11 @@ namespace data_structure
 		void calculate_value(const node_ptr &root)
 		{
 			if (root->left->have_value == true && root->right->have_value == true)
-				root->value = m_function(root->left->value, root->right->value);
+				root->value = m_function(root->left->value, root->right->value), root->have_value = true;
 			else if (root->left->have_value == true)
-				root->value = root->left->value;
+				root->value = root->left->value, root->have_value = true;
 			else if (root->right->have_value == true)
-				root->value = root->right->value;
+				root->value = root->right->value, root->have_value = true;
 			else
 				root->have_value = false;
 		}
@@ -292,6 +295,7 @@ namespace data_structure
 		{
 			// todo::
 			if (m_data.size() > (m_real_size >> 1)) return;
+			m_real_size >>= 1;
 			m_root = m_root->left;
 		}
 

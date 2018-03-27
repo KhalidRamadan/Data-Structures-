@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 	st.set_function(lamda);
 
 	clock_t before, after;
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 20000; i++)
 	{
 		int type = rand() % 5;
 		if (type == 0)
@@ -54,13 +54,13 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 			if (l > r) std::swap(l, r);
 
 			before = clock();
-			for (int j = 0; j < 10; j++) // to test perforamce 
+			for (int j = 0; j < 10; j++) // to test performance 
 				bf_ans = brute_force(l, r, bf, lamda);
 			after = clock();
 			time_brute_force = time_brute_force + (after - before);
 
 			before = clock();
-			for(int j = 0; j < 10; j++) // to test perforamce 
+			for(int j = 0; j < 10; j++) // to test performance 
 				st_ans = st.query(l, r);
 			after = clock();
 			time_segment_tree = time_segment_tree + (after - before);
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(st_vector_int_test)
 std::string randstring()
 {
 	std::string new_string = "";
-	int len = rand() % 1000;
+	int len = rand() % 2000;
 	for (int i = 0; i < len; i++)
 	{
 		int f = rand() % 26;
@@ -134,11 +134,11 @@ BOOST_AUTO_TEST_CASE(st_vector_string_test)
 	srand(time(NULL));
 
 	std::vector<std::string> bf = { "ergreg", "dsfdsf", "gregreg", "sdfdsf", "sdfdsf", "qwewqe", "dsfsd", "ewrew", "eerwr"};
-	std::function<std::string(std::string, std::string)> lamda = [](std::string a, std::string b) { return std::max(a, b); }; 
-	data_structure::segment_tree<std::string> st(bf, [](std::string a, std::string b) { return std::max(a, b); });
+	std::function<std::string(std::string, std::string)> lamda = [](std::string a, std::string b) { return std::min(a, b); }; 
+	data_structure::segment_tree<std::string> st(bf, [](std::string a, std::string b) { return std::min(a, b); });
 
 	clock_t before, after;
-	for (int i = 0; i < 10000; i++)
+	for (int i = 0; i < 20000; i++)
 	{
 		int type = rand() % 5;
 		if (type == 0)

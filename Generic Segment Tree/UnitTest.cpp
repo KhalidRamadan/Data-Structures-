@@ -133,7 +133,7 @@ BOOST_AUTO_TEST_CASE(st_vector_string_test)
 	clock_t time_segment_tree = 0;
 	srand(time(NULL));
 
-	std::vector<std::string> bf = { "ergreg", "dsfdsf", "gregreg", "sdfdsf", "sdfdsf", "qwewqe", "dsfsd", "ewrew"};
+	std::vector<std::string> bf = { "ergreg", "dsfdsf", "gregreg", "sdfdsf", "sdfdsf", "qwewqe", "dsfsd", "ewrew", "eerwr"};
 	std::function<std::string(std::string, std::string)> lamda = [](std::string a, std::string b) { return std::max(a, b); }; 
 	data_structure::segment_tree<std::string> st(bf, [](std::string a, std::string b) { return std::max(a, b); });
 
@@ -151,13 +151,13 @@ BOOST_AUTO_TEST_CASE(st_vector_string_test)
 			if (l > r) std::swap(l, r);
 
 			before = clock();
-			for (int j = 0; j < 10; j++) // to test perforamce 
+			for (int j = 0; j < 10; j++) // to test performance 
 				bf_ans = brute_force(l, r, bf, lamda);
 			after = clock();
 			time_brute_force = time_brute_force + (after - before);
 
 			before = clock();
-			for (int j = 0; j < 10; j++) // to test perforamce 
+			for (int j = 0; j < 10; j++) // to test performance 
 				st_ans = st.query(l, r);
 			after = clock();
 			time_segment_tree = time_segment_tree + (after - before);

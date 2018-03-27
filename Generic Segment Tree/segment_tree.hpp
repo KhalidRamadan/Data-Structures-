@@ -293,8 +293,8 @@ namespace data_structure
 		// This fuction free memory when you don't use it (delete free nodes in the tree)
 		void downgrade()
 		{
-			// todo::
 			if (m_data.size() > (m_real_size >> 1)) return;
+			if (m_real_size == 1) return;
 			m_real_size >>= 1;
 			m_root = m_root->left;
 		}
